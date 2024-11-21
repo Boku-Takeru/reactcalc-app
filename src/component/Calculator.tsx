@@ -7,25 +7,35 @@ export default function Calculator() {
   function getValue(value: string) {
     setCurrentInput((prevInput) => prevInput + value);
   }
-  
-  
+
   // クリアボタンが押されたときの処理
   function clearKey(): void {
-    setCurrentInput = ("");
-    setResult = ("");
+    setCurrentInput("");
+    setResult("");
   }
-  
+
   // イコールボタンが押されたときの処理
-  function equalKey(equalKey:string) {
+  function equalKey(equalKey: string) {
     try {
-      const result = eval(currentInput);
-      setCurrentInput = (result.tostring());
+      const calcResult = eval(currentInput);
+      setCurrentInput(calcResult.toString());
     } catch {
       setCurrentInput("Error");
-      
     }
   }
-  
+
+  // function equalKey (equalKey:string){
+  //   setResult("");
+  //   calculateResult();
+  // }
+  // const calculateResult = () => {
+  //   try {
+  //     setCurrentInput(eval(currentInput));
+  //   } catch (error) {
+  //     setResult("Enter Valid Operation");
+  //   }
+  // };
+
   return (
     <form>
       {/* <!-- 液晶 --> */}
@@ -53,11 +63,7 @@ export default function Calculator() {
             <input type="button" value="9" onClick={() => getValue("9")} />
           </td>
           <td>
-            <input
-              type="button"
-              value="÷"
-              onClick={() => getValue("/")}
-            />
+            <input type="button" value="÷" onClick={() => getValue("/")} />
           </td>
         </tr>
         <tr>
@@ -71,11 +77,7 @@ export default function Calculator() {
             <input type="button" value="6" onClick={() => getValue("6")} />
           </td>
           <td>
-            <input
-              type="button"
-              value="×"
-              onClick={() => getValue("*")}
-            />
+            <input type="button" value="×" onClick={() => getValue("*")} />
           </td>
         </tr>
         <tr>
@@ -89,11 +91,7 @@ export default function Calculator() {
             <input type="button" value="3" onClick={() => getValue("3")} />
           </td>
           <td>
-            <input
-              type="button"
-              value="-"
-              onClick={() => getValue("-")}
-            />
+            <input type="button" value="-" onClick={() => getValue("-")} />
           </td>
         </tr>
         <tr>
@@ -101,17 +99,13 @@ export default function Calculator() {
             <input type="button" value="0" onClick={() => getValue("0")} />
           </td>
           <td>
-            <input type="button" value="C" onClick={() => clearKey("C")} />
+            <input type="button" value="C" onClick={() => clearKey()} />
           </td>
           <td>
             <input type="button" value="=" onClick={() => equalKey("=")} />
           </td>
           <td>
-            <input
-              type="button"
-              value="+"
-              onClick={() => getValue("+")}
-            />
+            <input type="button" value="+" onClick={() => getValue("+")} />
           </td>
         </tr>
       </table>
