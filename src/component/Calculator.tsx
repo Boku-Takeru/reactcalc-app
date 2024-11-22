@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export default function Calculator() {
   const [currentInput, setCurrentInput] = useState("");
-  const [result, setResult] = useState("");
 
   function getValue(value: string) {
     setCurrentInput((prevInput) => prevInput + value);
@@ -11,37 +10,55 @@ export default function Calculator() {
   // クリアボタンが押されたときの処理
   function clearKey(): void {
     setCurrentInput("");
-    setResult("");
   }
 
-  // イコールボタンが押されたときの処理
   function equalKey(equalKey: string) {
-    try {
-      const calcResult = eval(currentInput);
-      setCurrentInput(calcResult.toString());
-    } catch {
-      setCurrentInput("Error");
-    }
+    calcResult();
   }
+  const calcResult = () => {
+    try {
+      setCurrentInput(eval(currentInput));
+    } catch (error) {}
+  };
 
-  // function equalKey (equalKey:string){
-  //   setResult("");
-  //   calculateResult();
-  // }
-  // const calculateResult = () => {
-  //   try {
-  //     setCurrentInput(eval(currentInput));
-  //   } catch (error) {
-  //     setResult("Enter Valid Operation");
-  //   }
-  // };
+  const inputStyle = {
+    fontSize: 50,
+    borderRadius: 20,
+    width: 80,
+    height: 80,
+    border: "none",
+    margin: 8,
+  };
 
   return (
-    <form>
+    <form
+      style={{
+        height: 500,
+        width: 400,
+        margin: "20 auto",
+        padding: 20,
+        border: "1 solid #ccc",
+        borderRadius: 10,
+        textAlign: "center",
+      }}
+    >
       {/* <!-- 液晶 --> */}
       <table>
         {/* <td colspan="4"> */}
-        <input type="text" name="display" value={currentInput} readOnly />
+        <input
+          type="text"
+          name="display"
+          value={currentInput}
+          readOnly
+          style={{
+            height: 100,
+            width: "100%",
+            textAlign: "right",
+            fontSize: 60,
+            display: "block",
+            margin: "0 auto",
+          }}
+        />
         {/* </td> */}
       </table>
 
@@ -54,58 +71,138 @@ export default function Calculator() {
       >
         <tr>
           <td>
-            <input type="button" value="7" onClick={() => getValue("7")} />
+            <input
+              type="button"
+              value="7"
+              style={inputStyle}
+              onClick={() => getValue("7")}
+            />
           </td>
           <td>
-            <input type="button" value="8" onClick={() => getValue("8")} />
+            <input
+              type="button"
+              value="8"
+              style={inputStyle}
+              onClick={() => getValue("8")}
+            />
           </td>
           <td>
-            <input type="button" value="9" onClick={() => getValue("9")} />
+            <input
+              type="button"
+              value="9"
+              style={inputStyle}
+              onClick={() => getValue("9")}
+            />
           </td>
           <td>
-            <input type="button" value="÷" onClick={() => getValue("/")} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="button" value="4" onClick={() => getValue("4")} />
-          </td>
-          <td>
-            <input type="button" value="5" onClick={() => getValue("5")} />
-          </td>
-          <td>
-            <input type="button" value="6" onClick={() => getValue("6")} />
-          </td>
-          <td>
-            <input type="button" value="×" onClick={() => getValue("*")} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="button" value="1" onClick={() => getValue("1")} />
-          </td>
-          <td>
-            <input type="button" value="2" onClick={() => getValue("2")} />
-          </td>
-          <td>
-            <input type="button" value="3" onClick={() => getValue("3")} />
-          </td>
-          <td>
-            <input type="button" value="-" onClick={() => getValue("-")} />
+            <input
+              type="button"
+              value="÷"
+              style={inputStyle}
+              onClick={() => getValue("/")}
+            />
           </td>
         </tr>
         <tr>
           <td>
-            <input type="button" value="0" onClick={() => getValue("0")} />
+            <input
+              type="button"
+              value="4"
+              style={inputStyle}
+              onClick={() => getValue("4")}
+            />
           </td>
           <td>
-            <input type="button" value="C" onClick={() => clearKey()} />
+            <input
+              type="button"
+              value="5"
+              style={inputStyle}
+              onClick={() => getValue("5")}
+            />
           </td>
           <td>
-            <input type="button" value="=" onClick={() => equalKey("=")} />
+            <input
+              type="button"
+              value="6"
+              style={inputStyle}
+              onClick={() => getValue("6")}
+            />
           </td>
           <td>
-            <input type="button" value="+" onClick={() => getValue("+")} />
+            <input
+              type="button"
+              value="×"
+              style={inputStyle}
+              onClick={() => getValue("*")}
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="button"
+              value="1"
+              style={inputStyle}
+              onClick={() => getValue("1")}
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              value="2"
+              style={inputStyle}
+              onClick={() => getValue("2")}
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              value="3"
+              style={inputStyle}
+              onClick={() => getValue("3")}
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              value="-"
+              style={{ ...inputStyle, paddingBottom: 10 }}
+              onClick={() => getValue("−")}
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="button"
+              value="0"
+              style={inputStyle}
+              onClick={() => getValue("0")}
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              value="C"
+              style={inputStyle}
+              onClick={() => clearKey()}
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              value="="
+              style={inputStyle}
+              onClick={() => equalKey("=")}
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              value="+"
+              style={inputStyle}
+              onClick={() => getValue("+")}
+            />
           </td>
         </tr>
       </table>
