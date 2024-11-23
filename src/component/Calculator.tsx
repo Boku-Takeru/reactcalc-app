@@ -40,6 +40,7 @@ export default function Calculator() {
         border: "1 solid #ccc",
         borderRadius: 10,
         textAlign: "center",
+        backgroundColor: "darkgrey",
       }}
     >
       {/* <!-- 液晶 --> */}
@@ -166,8 +167,8 @@ export default function Calculator() {
             <input
               type="button"
               value="-"
-              style={{ ...inputStyle, paddingBottom: 10 }}
-              onClick={() => getValue("−")}
+              style={{ ...inputStyle, paddingBottom: 10,}}
+              onClick={() => getValue("-")}
             />
           </td>
         </tr>
@@ -184,7 +185,7 @@ export default function Calculator() {
             <input
               type="button"
               value="C"
-              style={inputStyle}
+              style={{...inputStyle,backgroundColor: "#ff9500",}}
               onClick={() => clearKey()}
             />
           </td>
